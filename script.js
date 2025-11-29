@@ -3,31 +3,23 @@ getSumBtn.append("Get Total Price");
 document.body.appendChild(getSumBtn);
 
 const getSum = () => {
-  // Select all price cells
-  const prices = document.querySelectorAll(".prices");
+  // 1. Select all prices
+  const priceCells = document.querySelectorAll(".price");
 
+  // 2. Sum the prices
   let total = 0;
-
-  // Sum all the prices
-  prices.forEach(price => {
-    total += Number(price.textContent.trim());
+  priceCells.forEach(cell => {
+    total += Number(cell.textContent);
   });
 
-  // Get the table (assuming only one table exists)
+  // 3. Create a new row for total
   const table = document.querySelector("table");
-
-  // Create a new row
   const totalRow = document.createElement("tr");
-
-  // Create the total cell
   const totalCell = document.createElement("td");
 
-  // Span across the entire row (optional)
-  totalCell.colSpan = table.rows[0].cells.length;
+  totalCell.setAttribute("colspan", "2"); 
+  totalCell.textContent = `Total Price: ${total}`;
 
-  totalCell.textContent = "Total Price: " + total;
-
-  
   totalRow.appendChild(totalCell);
   table.appendChild(totalRow);
 };
